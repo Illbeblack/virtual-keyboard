@@ -8,12 +8,22 @@ body {
     background-color:rgba(69, 124, 156, 0.639)
 }
 
-.header {
+.centralizer {
     margin: 0 auto;
-    text-align: center;
 }
 
-.header__title {
+.textarea {
+    display: block;
+    width: 700px;
+    height: 200px;
+    margin: 10px auto 10px;
+    padding: 10px;
+    font-size: 18px;
+    color: #444444;
+}
+
+.title {
+    font-size: 30px;
     color:#fff
 }
 
