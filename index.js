@@ -318,3 +318,69 @@ const Keyboard = {
         this.elements.main.classList.add("keyboard__hidden");
     }
 };
+
+// Display on the page
+
+window.addEventListener("DOMContentLoaded", function () {
+    Keyboard.init();
+    Keyboard.open("dcode ", function (currentValue) {
+        console.log("value changed! here it is: " + currentValue);
+    }, function (currentValue) {
+        console.log("keyboard closed! Finishing value: " + currentValue);
+    })
+
+    document.onkeypress = function (e) {
+        console.log(e.code);
+    }
+
+    let keys = document.querySelectorAll('.key');
+    let spaceKey = document.querySelector('.space');
+    let shift_left = document.querySelector('.shiftLeft');
+    let shift_right = document.querySelector('.shiftRight');
+    let caps_lock_key = document.querySelector('.capsLock');
+
+    for (let i = 0; i < keys.length; i++) {
+        keys[i].setAttribute('keyname', keys[i].innerText);
+        keys[i].setAttribute('lowerCaseName', keys[i].innerText.toLowerCase());
+    }
+
+    console.log(keys);
+
+    window.addEventListener('keydown', function(e) {
+        for(let i = 0; i < keys.length; i++) {
+            if(e.key == keys[i].getAttribute('keyname' ) || e.key == keys[i].getAttribute('lowerCaseName' )) {
+                keys[i].classList.add('active');
+            }
+            if (e.code == 'space') {
+                spaceKey.classList.add('active'); 
+            }
+            if (e.code == 'shiftLeft') {
+                shift_right.classList.remove('active');
+            }
+            if (e.code == 'shiftRight') {
+                shift_left.classList.remove('active');
+            }
+            if (e.code == 'capsLock') {
+                caps_lock_key.classList.toggle('active');
+                console.log(e.code)
+            }
+        }    
+    });
+
+    window.addEventListener('keyup', function(e) {
+        for(let i = 0; i < keys.length; i++) {
+            if(e.key == keys[i].getAttribute('keyname' ) || e.key == keys[i].getAttribute('lowerCaseName' )) {
+                keys[i].classList.remove('active');
+            }  
+            if (e.code == 'space') {
+                spaceKey.classList.remove('active'); 
+            }
+            if (e.code == 'shiftLeft') {
+                shift_right.classList.remove('active'); 
+            }
+            if (e.code == 'shiftRight') {
+                shift_left.classList.remove('active'); 
+            }
+        }
+    });
+});
