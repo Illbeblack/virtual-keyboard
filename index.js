@@ -1,7 +1,7 @@
 const Keyboard = {
 
     elements: {
-        centralizer: null,
+        container: null,
         title: null,
         textarea: null,
         main: null,
@@ -23,7 +23,7 @@ const Keyboard = {
 
     init() {
         // Frame main elements
-        this.elements.centralizer = document.createElement("div");
+        this.elements.container = document.createElement("div");
         this.elements.title = document.createElement("p");
         this.elements.textarea = document.createElement("textarea");
 
@@ -34,7 +34,7 @@ const Keyboard = {
         this.elements.language = document.createElement("p");
 
         // Add main elements
-        this.elements.centralizer.classList.add("centralizer");
+        this.elements.container.classList.add("container");
         this.elements.title.classList.add("title");
         this.elements.title.innerHTML = "Virtual Keyboard";
         this.elements.textarea.classList.add("textarea");
@@ -50,12 +50,34 @@ const Keyboard = {
         this.elements.keys = this.elements.keysContainer.querySelectorAll(".key");
  
         // DOM
-        this.elements.centralizer.appendChild(this.elements.title);
-        this.elements.centralizer.appendChild(this.elements.textarea);
+        this.elements.container.appendChild(this.elements.title);
+        this.elements.container.appendChild(this.elements.textarea);
          
         this.elements.main.appendChild(this.elements.keysContainer);
-        this.elements.centralizer.appendChild(this.elements.main);
-        this.elements.centralizer.appendChild(this.elements.description);
-        this.elements.centralizer.appendChild(this.elements.language);
+        this.elements.container.appendChild(this.elements.main);
+        this.elements.container.appendChild(this.elements.description);
+        this.elements.container.appendChild(this.elements.language);
+
+        document.body.appendChild(this.elements.container);
+        
+        // Automatically use keyboard for elements
+        document.querySelectorAll(".textarea").forEach(element => {
+            element.addEventListener("focus", () => {
+                this.open(element.value, currentValue => {
+                    element.value = currentValue;
+                });
+            });
+        });
+    },
+
+    _createKeys() {
+        const fragment = document.createDocumentFragment();
+        const keyLayout = [
+            "`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "backspace",
+            "tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\\", "delete",
+            "capsLock", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "enter",
+            "shiftLeft", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "arrowUp", "shiftRight",
+            "controlLeft", "metaLeft", "altLeft", "space", "altRight", "arrowLeft", "arrowDown", "arrowRight", "controlRight",
+        ];
     }
-}
+};
