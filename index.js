@@ -284,4 +284,37 @@ const Keyboard = {
 
         return fragment;
     },
+
+    _triggerEvent(handlerName) {
+        if (typeof this.eventHandlers[handlerName] == "function") {
+            this.eventHandlers[handlerName](this.properties.value);
+        } 
+    },
+
+    _toggleCapsLock() {
+        this.properties.capsLock = !this.properties.capsLock;
+
+        for (const key of this.elements.keys) {
+            if (!key.classList.contains("backspace") && !key.classList.contains("tab") && !key.classList.contains("delete") &&
+                !key.classList.contains("capsLock") && !key.classList.contains("enter") && !key.classList.contains("shiftLeft") && 
+                !key.classList.contains("shiftRight") && !key.classList.contains("controlLeft") && !key.classList.contains("metaLeft") &&
+                !key.classList.contains("altLeft") && !key.classList.contains("altRight") && !key.classList.contains("controlRight")) {
+                key.textContent = this.properties.capsLock ? key.textContent.toUpperCase() : key.textContent.toLowerCase();
+            }
+        }
+    },
+
+    open(initialValue, oninput, onclose) {
+        this.properties.value = initialValue || "";
+        this.eventHandlers.oninput = oninput;
+        this.eventHandlers.onclose = onclose;
+        this.elements.main.classList.remove("keyboard__hidden");
+    },
+
+    close() {
+        this.properties.value = "";
+        this.eventHandlers.oninput = oninput;
+        this.eventHandlers.onclose = onclose;
+        this.elements.main.classList.add("keyboard__hidden");
+    }
 };
