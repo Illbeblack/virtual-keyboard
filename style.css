@@ -91,46 +91,46 @@ body {
     min-height: 40px;
 }
 
-.AltLeft, 
-.AltRight, 
-.ArrowUp, 
-.ArrowLeft, 
-.ArrowDown, 
-.ArrowRight,
-.Backspace, 
-.CapsLock, 
-.ControlLeft, 
-.ControlRight, 
-.Delete, 
-.Enter, 
-.ShiftLeft, 
-.ShiftRight,
-.Space,
-.Tab, 
-.MetaLeft {
+.altLeft, 
+.altRight, 
+.arrowUp, 
+.arrowLeft, 
+.arrowDown, 
+.arrowRight,
+.backspace, 
+.capsLock, 
+.controlLeft, 
+.controlRight, 
+.delete, 
+.enter, 
+.shiftLeft, 
+.shiftRight,
+.space,
+.tab, 
+.metaLeft {
     font-weight: 600;
     background-color: #222222;
 }
 
-.Tab {
+.tab {
     width: 50px;
 }
 
-.Backspace, 
-.CapsLock, 
-.ShiftLeft {
+.backspace, 
+.capsLock, 
+.shiftLeft {
     width: 100px;
 }
 
-.Delete {
+.delete {
     width: 44px;
 }
 
-.Enter,
-.ShiftRight {
+.enter,
+.shiftRight {
     width: 86px;
 }
 
-.Space {
+.space {
     width: 330px;
 }
